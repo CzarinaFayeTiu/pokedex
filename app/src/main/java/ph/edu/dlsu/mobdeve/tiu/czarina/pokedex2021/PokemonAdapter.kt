@@ -1,6 +1,8 @@
 package ph.edu.dlsu.mobdeve.tiu.czarina.pokedex2021
 
 import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -26,6 +28,17 @@ class PokemonAdapter (private val context: Context,
     //this binds all the content in a row
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItems(pokemonlist[position])
+
+        holder.btn_view_data.setOnClickListener{
+            Log.d("Pokemon", "${pokemonlist[position].name}")
+
+            Intent().also{
+                Log.d("Pokemon", "${pokemonlist[position].url}")
+                it.action = "ph.edu.dlsu.android.api.broadcast.LOADIMAGEACTION"
+                it.putExtra("data", pokemonlist[position].url)
+                context.sendBroadcast(it)
+            }
+        }
     }
 
     fun setList(pokemonlist:ArrayList<Pokemon>){
@@ -35,6 +48,8 @@ class PokemonAdapter (private val context: Context,
     }
     class ViewHolder(private val itemBinding:ItemPokemonListRowBinding)
         : RecyclerView.ViewHolder(itemBinding.root) {
+
+        public var btn_view_data =itemBinding.btnViewData
 
         fun bindItems(pokemon: Pokemon) {
             //in item_pokemon_list_row.xml we created pokemon name and btn view data

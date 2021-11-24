@@ -15,10 +15,14 @@ class MainActivity : AppCompatActivity() {
 
     val pokemonListFragment = PokemonListFragment()
 
+    val pokemonInfoFragment = PokemonInfoFragment()
+    val pokemonImageFragment = PokemonImageFragment()
+
     private lateinit var appBarConfiguration: AppBarConfiguration
     //Notice that this also use binding
     private lateinit var binding: ActivityMainBinding
 
+    private lateinit var pokemonInfoAdapter: PokemonInfoAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,5 +34,9 @@ class MainActivity : AppCompatActivity() {
             .add(R.id.fragment_holder, pokemonListFragment)
             .commit()
 
+        pokemonInfoAdapter = PokemonInfoAdapter(supportFragmentManager)
+        pokemonInfoAdapter.add(pokemonInfoFragment, "Pokemon Information")
+        pokemonInfoAdapter.add(pokemonImageFragment, "Pokemon Image")
+        binding!!.pokemonInfoViewpager.adapter = pokemonInfoAdapter
     }
 }
