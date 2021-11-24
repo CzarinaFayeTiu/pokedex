@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--REMEMBER: ORIENTATION IS ALWAYS! REQUIRED IN LINEAR LAYOUT-->
+<!--Weight means that it will be divided into n number of rows
+in this case 10-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_weight="10"
+    tools:context=".MainActivity">
+
+    <FrameLayout
+        android:background="@color/white"
+        android:id="@+id/fragment_holder"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="15dp"
+        android:layout_weight="6"/> <!--Will consume 6 out of the 10 weight
+                                        that is why height=0dp-->
+
+    <!--In viewpage it will be like a book you can
+        swipe from left to right to view pokemons -->
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pokemon_info_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:padding="15dp"/>
+</LinearLayout>
